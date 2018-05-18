@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://www.nowcerts.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://www.nowcerts.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://www.nowcerts.com/">
+      <s:element name="GetToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginData" type="tns:LoginData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LoginData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTokenResult" type="tns:AuthenticationData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthenticationData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpiresOn" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:GetToken" />
+  </wsdl:message>
+  <wsdl:message name="GetTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTokenResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AuthenticationServiceSoap">
+    <wsdl:operation name="GetToken">
+      <wsdl:input message="tns:GetTokenSoapIn" />
+      <wsdl:output message="tns:GetTokenSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AuthenticationServiceHttpGet" />
+  <wsdl:portType name="AuthenticationServiceHttpPost" />
+  <wsdl:binding name="AuthenticationServiceSoap" type="tns:AuthenticationServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetToken">
+      <soap:operation soapAction="https://www.nowcerts.com/GetToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AuthenticationServiceSoap12" type="tns:AuthenticationServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetToken">
+      <soap12:operation soapAction="https://www.nowcerts.com/GetToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AuthenticationServiceHttpGet" type="tns:AuthenticationServiceHttpGet">
+    <http:binding verb="GET" />
+  </wsdl:binding>
+  <wsdl:binding name="AuthenticationServiceHttpPost" type="tns:AuthenticationServiceHttpPost">
+    <http:binding verb="POST" />
+  </wsdl:binding>
+  <wsdl:service name="AuthenticationService">
+    <wsdl:port name="AuthenticationServiceSoap" binding="tns:AuthenticationServiceSoap">
+      <soap:address location="https://webservices.nowcerts.com/WebServices/Public/AuthenticationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AuthenticationServiceSoap12" binding="tns:AuthenticationServiceSoap12">
+      <soap12:address location="https://webservices.nowcerts.com/WebServices/Public/AuthenticationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AuthenticationServiceHttpGet" binding="tns:AuthenticationServiceHttpGet">
+      <http:address location="https://webservices.nowcerts.com/WebServices/Public/AuthenticationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AuthenticationServiceHttpPost" binding="tns:AuthenticationServiceHttpPost">
+      <http:address location="https://webservices.nowcerts.com/WebServices/Public/AuthenticationService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

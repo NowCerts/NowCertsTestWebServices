@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://www.nowcerts.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://www.nowcerts.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://www.nowcerts.com/">
+      <s:element name="ImportInsured">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insured" type="tns:NcInsured" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="NcInsured">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CommercialName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:NcInsuredType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateNameOrAbbreviation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMail2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMail3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CellPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SmsPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FEIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomFields" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Agents" type="tns:ArrayOfNcAgent" />
+          <s:element minOccurs="0" maxOccurs="1" name="CSRs" type="tns:ArrayOfNcAgent" />
+          <s:element minOccurs="0" maxOccurs="1" name="XDatesAndLinesOfBusiness" type="tns:ArrayOfNcXDateAndLineOfBusiness" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferralSourceCompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaryAgencyOfficeLocationName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="NcInsuredType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Insured" />
+          <s:enumeration value="Prospect" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfNcAgent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NcAgent" nillable="true" type="tns:NcAgent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NcAgent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfNcXDateAndLineOfBusiness">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NcXDateAndLineOfBusiness" nillable="true" type="tns:NcXDateAndLineOfBusiness" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NcXDateAndLineOfBusiness">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="XDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="LineOfBusinessName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportInsuredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ImportInsuredResult" type="tns:NowCertsApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="NowCertsApiResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:NcApiStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="NcApiStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Error" />
+          <s:enumeration value="Success" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="NowCertsAuthenticationData" type="tns:NowCertsAuthenticationData" />
+      <s:complexType name="NowCertsAuthenticationData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ImportInsuredSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportInsured" />
+  </wsdl:message>
+  <wsdl:message name="ImportInsuredSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportInsuredResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportInsuredNowCertsAuthenticationData">
+    <wsdl:part name="NowCertsAuthenticationData" element="tns:NowCertsAuthenticationData" />
+  </wsdl:message>
+  <wsdl:portType name="InsuredServiceSoap">
+    <wsdl:operation name="ImportInsured">
+      <wsdl:input message="tns:ImportInsuredSoapIn" />
+      <wsdl:output message="tns:ImportInsuredSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="InsuredServiceHttpGet" />
+  <wsdl:portType name="InsuredServiceHttpPost" />
+  <wsdl:binding name="InsuredServiceSoap" type="tns:InsuredServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ImportInsured">
+      <soap:operation soapAction="https://www.nowcerts.com/ImportInsured" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ImportInsuredNowCertsAuthenticationData" part="NowCertsAuthenticationData" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="InsuredServiceSoap12" type="tns:InsuredServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ImportInsured">
+      <soap12:operation soapAction="https://www.nowcerts.com/ImportInsured" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ImportInsuredNowCertsAuthenticationData" part="NowCertsAuthenticationData" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="InsuredServiceHttpGet" type="tns:InsuredServiceHttpGet">
+    <http:binding verb="GET" />
+  </wsdl:binding>
+  <wsdl:binding name="InsuredServiceHttpPost" type="tns:InsuredServiceHttpPost">
+    <http:binding verb="POST" />
+  </wsdl:binding>
+  <wsdl:service name="InsuredService">
+    <wsdl:port name="InsuredServiceSoap" binding="tns:InsuredServiceSoap">
+      <soap:address location="https://webservices.nowcerts.com/WebServices/Public/InsuredService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="InsuredServiceSoap12" binding="tns:InsuredServiceSoap12">
+      <soap12:address location="https://webservices.nowcerts.com/WebServices/Public/InsuredService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="InsuredServiceHttpGet" binding="tns:InsuredServiceHttpGet">
+      <http:address location="https://webservices.nowcerts.com/WebServices/Public/InsuredService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="InsuredServiceHttpPost" binding="tns:InsuredServiceHttpPost">
+      <http:address location="https://webservices.nowcerts.com/WebServices/Public/InsuredService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
