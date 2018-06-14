@@ -52,11 +52,15 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <%--<li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>--%>
                         <li><a runat="server" href="~/Authenticate">Authenticate</a></li>
                         <li><a runat="server" href="~/Insureds">Insureds</a></li>
                         <li><a runat="server" href="~/Policies">Policies</a></li>
+                        
+                        <li><a runat="server" href="~/AuthenticateRestApi">Authenticate REST API</a></li>
+                        <li><a runat="server" href="~/InsuredsRestApi">Insureds REST API</a></li>
+                        <li><a runat="server" href="~/PoliciesRestApi">Policies REST API</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,5 +75,9 @@
         </div>
 
     </form>
+
+    <asp:ContentPlaceHolder ID="scripts" runat="server">
+
+    </asp:ContentPlaceHolder>
 </body>
 </html>
