@@ -10,18 +10,20 @@
     <asp:Button ID="btnAuthenticate" class="btn-submit" runat="server" Text="Authenticate" OnClientClick="return false;" />
     <br />
     Result:
-    <asp:Literal ID="ltrResult" runat="server"></asp:Literal>
+    <asp:Label ID="lblResult" runat="server"></asp:Label>
 </asp:Content>
 
 <asp:Content ID="ContentScripts" ContentPlaceHolderID="scripts" runat="server">
     <script>
-        $('document').ready(function() {
+        $('document').ready(function () {
             var $username = $('.txt-username'),
                 $password = $('.txt-password'),
                 $btn = $('.btn-submit'),
                 valid = false;
 
-            $btn.on("click", function() {
+            localStorage.clear();
+
+            $btn.on("click", function () {
                 var usernameValue = $username.val(),
                     passwordValue = $password.val(),
                     toSend = {};
@@ -38,20 +40,32 @@
                         dataToSend = `${dataToSend}&client_id=ngAuthApp`;
                     }
 
+                    //var dataJson = {};
+                    //dataJson.grant_type = "password";
+                    //dataJson.username = usernameValue;
+                    //dataJson.password = passwordValue;
+                    //dataJson.client_id = "ngAuthApp";
+
                     console.log(toSend);
                     console.log(dataToSend);
 
                     $.ajax({
                         method: "POST",
-                        url: "https://api.nowcerts.com/token",
+                        url: "https://api.nowcerts.com/api/token",
                         contentType: 'application/json',
-                        data: dataToSend
+                        data: dataToSend,
+                        success: function (result) {
+                            if (result && result.access_token) {
+                                localStorage.setItem("authorizationData", JSON.stringify(result));
+                                document.getElementById("<%=lblResult.ClientID%>").innerHTML = "You've been authenticated successfully. You can go to Insureds and Policies pages to test import functionality.";
+                            }
+                        },
+                        error: function (r) {
+                            if (r.responseJSON && r.responseJSON.error && r.responseJSON.error_description) {
+                                document.getElementById("<%=lblResult.ClientID%>").innerHTML = r.responseJSON.error_description;
+                            }
+                        }
                     })
-                    .done(function(result) {
-                        console.log(result);
-                        // Save the transformed result to local storage - authorizationData with token inside.
-                        
-                    });
                 }
             });
         });

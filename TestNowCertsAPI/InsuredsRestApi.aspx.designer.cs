@@ -49,13 +49,13 @@ namespace TestNowCertsAPI {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
-        /// ltrResultStatus control.
+        /// ltrAuthenticationStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrResultStatus;
+        protected global::System.Web.UI.WebControls.Label ltrAuthenticationStatus;
         
         /// <summary>
         /// ltrResultMessage control.
@@ -64,6 +64,6 @@ namespace TestNowCertsAPI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrResultMessage;
+        protected global::System.Web.UI.WebControls.Label ltrResultMessage;
     }
 }

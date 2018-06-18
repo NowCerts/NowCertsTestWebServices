@@ -55,9 +55,9 @@
                         <li><a runat="server" href="~/">Home</a></li>
                         <%--<li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>--%>
-                        <li><a runat="server" href="~/Authenticate">Authenticate</a></li>
+                        <%--<li><a runat="server" href="~/Authenticate">Authenticate</a></li>
                         <li><a runat="server" href="~/Insureds">Insureds</a></li>
-                        <li><a runat="server" href="~/Policies">Policies</a></li>
+                        <li><a runat="server" href="~/Policies">Policies</a></li>--%>
                         
                         <li><a runat="server" href="~/AuthenticateRestApi">Authenticate REST API</a></li>
                         <li><a runat="server" href="~/InsuredsRestApi">Insureds REST API</a></li>
