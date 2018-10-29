@@ -131,7 +131,6 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AuthenticateRestApi.aspx" />
-    <Content Include="Authenticate.aspx" />
     <None Include="Connected Services\NcAuthenticationService\AuthenticationService1.wsdl" />
     <None Include="Connected Services\NcAuthenticationService\configuration91.svcinfo" />
     <None Include="Connected Services\NcAuthenticationService\configuration.svcinfo" />
@@ -173,9 +172,7 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="InsuredsRestApi.aspx" />
-    <Content Include="Insureds.aspx" />
     <Content Include="PoliciesRestApi.aspx" />
-    <Content Include="Policies.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -229,13 +226,6 @@
     <Compile Include="AuthenticateRestApi.aspx.designer.cs">
       <DependentUpon>AuthenticateRestApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Authenticate.aspx.cs">
-      <DependentUpon>Authenticate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Authenticate.aspx.designer.cs">
-      <DependentUpon>Authenticate.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Connected Services\NcAuthenticationService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -271,26 +261,12 @@
     <Compile Include="InsuredsRestApi.aspx.designer.cs">
       <DependentUpon>InsuredsRestApi.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Insureds.aspx.cs">
-      <DependentUpon>Insureds.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Insureds.aspx.designer.cs">
-      <DependentUpon>Insureds.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PoliciesRestApi.aspx.cs">
       <DependentUpon>PoliciesRestApi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PoliciesRestApi.aspx.designer.cs">
       <DependentUpon>PoliciesRestApi.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Policies.aspx.cs">
-      <DependentUpon>Policies.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Policies.aspx.designer.cs">
-      <DependentUpon>Policies.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
