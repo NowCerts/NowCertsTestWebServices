@@ -230,11 +230,11 @@
 
                     if (isAdvanced) {
                         if ($ddlOrder.val()) {
-                            final = final + `&orderby=${$ddlOrder.val()} ${$ddlOrderDirection.val()}`;
+                            final = final + `&$orderby=${$ddlOrder.val()} ${$ddlOrderDirection.val()}`;
                         }
 
                         if ($skip.val() || $top.val()) {
-                            final = final + `&skip=${parseInt($skip.val()) || 0}&$top=${parseInt($top.val()) || 0}`;
+                            final = final + `&$skip=${parseInt($skip.val()) || 0}&$top=${parseInt($top.val()) || 0}`;
                         }
 
                         var props = getSelectedProperties();
