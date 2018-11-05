@@ -173,6 +173,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="InsuredsRestApi.aspx" />
     <Content Include="PoliciesRestApi.aspx" />
+    <Content Include="RefreshToken.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -201,6 +202,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SearchInsureds.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
@@ -269,6 +271,20 @@
       <DependentUpon>PoliciesRestApi.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefreshToken.aspx.cs">
+      <DependentUpon>RefreshToken.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RefreshToken.aspx.designer.cs">
+      <DependentUpon>RefreshToken.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchInsureds.aspx.cs">
+      <DependentUpon>SearchInsureds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchInsureds.aspx.designer.cs">
+      <DependentUpon>SearchInsureds.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
