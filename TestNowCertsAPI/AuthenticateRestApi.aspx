@@ -51,7 +51,7 @@
 
                     $.ajax({
                         method: "POST",
-                        url: "https://api.nowcerts.com/api/token",
+                        url: "<%=ConfigurationHelper.ApiUrl%>token",
                         contentType: 'application/json',
                         data: dataToSend,
                         success: function (result) {

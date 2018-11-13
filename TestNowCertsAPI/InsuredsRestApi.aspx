@@ -59,7 +59,7 @@
                         if (authorizationData) {
                             $.ajax({
                                 method: "POST",
-                                url: "https://api.nowcerts.com/api/Insured/Insert",
+                                url: "<%=ConfigurationHelper.ApiUrl%>Insured/Insert",
                                 headers: { 'Authorization': authorizationData.token_type + ' ' + authorizationData.access_token },
                                 contentType: 'application/json',
                                 data: JSON.stringify(toSend)

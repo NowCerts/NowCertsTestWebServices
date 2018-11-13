@@ -1,57 +1,23 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchInsureds.aspx.cs" Inherits="TestNowCertsAPI.SearchInsureds" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchPolicies.aspx.cs" Inherits="TestNowCertsAPI.SearchPolicies" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     Authentication Status:
     <asp:Label ID="ltrAuthenticationStatus" runat="server"></asp:Label>
 
     <div>
-        <h3>Search Insureds</h3>
+        <h3>Search Policies</h3>
         <div class="filter">
             <div class="caption">
-                <span>Type</span>
+                <span>Policy Number</span>
             </div>
             <div class="control">
-                <asp:DropDownList ID="ddlType" runat="server" CssClass="ddl-type">
-                    <asp:ListItem Text="Commercial" Value="0" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Personal" Value="1"></asp:ListItem>
-                </asp:DropDownList>
-            </div>
-        </div>
-
-        <div class="filter only-commercial">
-            <div class="caption">
-                <span>Commercial Name</span>
-            </div>
-            <div class="control">
-                <asp:TextBox ID="txtCommercialName" class="txt-commercial-name" runat="server"></asp:TextBox>
-            </div>
-        </div>
-
-        <div class="filter only-personal">
-            <div class="caption">
-                <span>First Name</span>
-            </div>
-            <div class="control">
-                <asp:TextBox ID="txtFirstName" class="txt-first-name" runat="server"></asp:TextBox>
-            </div>
-        </div>
-
-        <div class="filter only-personal">
-            <div class="caption">
-                <span>Last Name</span>
-            </div>
-            <div class="control">
-                <asp:TextBox ID="txtLastName" class="txt-last-name" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNumber" class="txt-number" runat="server"></asp:TextBox>
             </div>
         </div>
 
         <div class="filter">
-            <div class="caption">
-                <span>E-mail</span>
-            </div>
-            <div class="control">
-                <asp:TextBox ID="txtEmail" class="txt-email" runat="server"></asp:TextBox>
-            </div>
+            <asp:CheckBox ID="chIsQuote" runat="server" CssClass="ch-is-quote" Text="Is Quote" />
         </div>
 
         <div class="filter">
@@ -65,8 +31,9 @@
             <div class="control">
                 <asp:DropDownList ID="ddlOrderBy" runat="server" CssClass="ddl-order">
                     <asp:ListItem Text="" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Type" Value="type" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Email" Value="email"></asp:ListItem>
+                    <asp:ListItem Text="Business Sub Type" Value="businessSubType" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Effective Date" Value="effectiveDate"></asp:ListItem>
+                    <asp:ListItem Text="Expiration Date" Value="expirationDate"></asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
@@ -89,15 +56,15 @@
             </div>
             <div class="control">
                 <asp:CheckBoxList ID="cblProperties" runat="server" CssClass="chl-properties">
-                    <asp:ListItem Text="Commercial Name" Value="commercialName"></asp:ListItem>
-                    <asp:ListItem Text="First Name" Value="firstName"></asp:ListItem>
-                    <asp:ListItem Text="Last Name" Value="lastName"></asp:ListItem>
-                    <asp:ListItem Text="Type" Value="type"></asp:ListItem>
-                    <asp:ListItem Text="Email" Value="email"></asp:ListItem>
-                    <asp:ListItem Text="Phone" Value="phone"></asp:ListItem>
-                    <asp:ListItem Text="City" Value="city"></asp:ListItem>
-                    <asp:ListItem Text="State" Value="state"></asp:ListItem>
-                    <asp:ListItem Text="Zip" Value="zip"></asp:ListItem>
+                    <asp:ListItem Text="Expiration Date" Value="expirationDate"></asp:ListItem>
+                    <asp:ListItem Text="Effective Date" Value="effectiveDate"></asp:ListItem>
+                    <asp:ListItem Text="BindDate" Value="bindDate"></asp:ListItem>
+                    <asp:ListItem Text="Business Type" Value="businessType"></asp:ListItem>
+                    <asp:ListItem Text="Description" Value="description"></asp:ListItem>
+                    <asp:ListItem Text="Insured First Name" Value="insuredFirstName"></asp:ListItem>
+                    <asp:ListItem Text="Insured Last Name" Value="insuredLastName"></asp:ListItem>
+                    <asp:ListItem Text="Insured Commercial Name" Value="insuredCommercialName"></asp:ListItem>
+                    <asp:ListItem Text="Insured Email" Value="insuredEmail"></asp:ListItem>
                 </asp:CheckBoxList>
             </div>
         </div>
@@ -128,7 +95,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 15px;">
+         <div style="margin-top: 15px;">
             <asp:Button ID="btnSearch" class="btn-search" runat="server" Text="Search" OnClientClick="return false;" />
         </div>
 
@@ -137,9 +104,7 @@
             <asp:Label ID="ltrResultMessage" runat="server"></asp:Label>
         </div>
     </div>
-    
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="scripts" runat="server">
     <style>
         .filter {
@@ -163,27 +128,21 @@
 
     <script>
         $('document').ready(function () {
-            var $commercialName = $('.txt-commercial-name'),
-                $firstName = $('.txt-first-name'),
-                $lastName = $('.txt-last-name'),
-                $email = $('.txt-email'),
-                $type = $('.ddl-type'),
+            var $number = $('.txt-number'),
+                $chIsQuote = $('.ch-is-quote');
                 $chMoreSettings = $('.ch-more-settings'),
                 $ddlOrder = $('.ddl-order'),
                 $ddlOrderDirection = $('.ddl-order-direction'),
                 $skip = $('.txt-skip'),
                 $top = $('.txt-top'),
                 $btnSearch = $('.btn-search'),
-                isCommercial = true,
+                isQuote = false,
                 isAdvanced = false,
                 authorizationData = localStorage.getItem('authorizationData');
 
             var FILTER_DEFINITION = {
-                commercialName: { comparison: 'contains' },
-                firstName: { comparison: 'contains' },
-                lastName: { comparison: 'contains' },
-                email: { comparison: 'contains' },
-                type: { comparison: 'eq' }
+                number: { comparison: 'contains' },
+                isQuote: { comparison: 'eq' }
             };
 
             // Check for Authorization.
@@ -192,9 +151,8 @@
                 document.getElementById("<%=ltrAuthenticationStatus.ClientID %>").innerHTML = "You are already authenticated.";
 
                 $('.only-settings').hide();
-                toggleVisibility();
-                insuredTypeChangeHandler();
                 insuredMoreSettingsHandler();
+                policyOrQuote();
                 insuredSearchHandler();
             } else {
                 document.getElementById("<%=ltrAuthenticationStatus.ClientID %>").innerHTML = "You are not authenticated. Please Authenticate.";
@@ -204,27 +162,13 @@
             function insuredSearchHandler() {
                 $btnSearch.on('click', function () {
                     var filter = {};
-                    filter.type = $type.val();
 
-                    if ($email.val()) {
-                        filter.email = $email.val();
+                    if ($number.val()) {
+                            filter.number = $number.val();
                     }
+                    filter.isQuote = isQuote;
 
-                    if ($type.val() === '1') {
-                        if ($firstName.val()) {
-                            filter.firstName = $firstName.val();
-                        }
-
-                        if ($lastName.val()) {
-                            filter.lastName = $lastName.val();
-                        }
-                    } else {
-                        if ($commercialName.val()) {
-                            filter.commercialName = $commercialName.val();
-                        }
-                    }
-
-                    var base = '<%=ConfigurationHelper.ApiUrl%>/InsuredList()?';
+                    var base = '<%=ConfigurationHelper.ApiUrl%>PolicyList()?';
                     var url = constructFilter(filter);
                     var final = `${base}${url}`;
 
@@ -263,20 +207,7 @@
                         });
                 });
             }
-
-            // Handle the insured type change event.
-            function insuredTypeChangeHandler() {
-                $type.on('change', function () {
-                    if (this.value === '1') {
-                        isCommercial = false;
-                    } else {
-                        isCommercial = true;
-                    }
-
-                    toggleVisibility();
-                });
-            }
-
+            
             // Handle the more settings checkbox change event.
             function insuredMoreSettingsHandler() {
                 $chMoreSettings.on('change', function () {
@@ -291,20 +222,16 @@
                 });
             }
 
-            // Toggle visible filters depending on the selected insured type.
-            function toggleVisibility() {
-                if (isCommercial) {
-                    $('.only-commercial').show();
-                    $('.only-personal').hide();
-                } else {
-                    $('.only-commercial').hide();
-                    $('.only-personal').show();
-                }
+            // isQuote
+            function policyOrQuote() {
+                $chIsQuote.on('change', function () {
+                    isQuote = $(this).find('input')[0].checked ? true : false;
+                });
             }
-
+            
             // Get selected properties for additional $select odata statement.
             function getSelectedProperties() {
-                result = ['id'];
+                result = ['databaseId'];
 
                 var checks = $('.chl-properties').find('input');
 
@@ -332,7 +259,7 @@
                         }
 
                         if (comparisonDef.comparison === 'eq') {
-                            collectionEquals.push(`(${properties[i]} eq '${filter[properties[i]]}')`);
+                            collectionEquals.push(`(${properties[i]} eq ${filter[properties[i]]})`);
                         }
                     }
                 }
@@ -342,7 +269,7 @@
                 if (collectionContains.length > 0) {
                     result = result + ' and ' + collectionContains.join(' and ');
                 }
-
+                
                 return result;
             }
         });

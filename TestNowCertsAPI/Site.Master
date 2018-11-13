@@ -48,7 +48,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">NowCerts - Test Web Services</a>
+                    <a class="navbar-brand" runat="server" href="~/">NowCerts - Test API</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -63,6 +63,7 @@
                         <li><a runat="server" href="~/InsuredsRestApi">Insureds</a></li>
                         <li><a runat="server" href="~/PoliciesRestApi">Policies</a></li>
                         <li><a runat="server" href="~/SearchInsureds">Search Insureds</a></li>
+                        <li><a runat="server" href="~/SearchPolicies">Search Policies</a></li>
                         <li><a runat="server" href="~/RefreshToken">Refresh Token</a></li>
                     </ul>
                 </div>

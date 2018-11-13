@@ -203,6 +203,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="SearchInsureds.aspx" />
+    <Content Include="SearchPolicies.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
@@ -255,6 +256,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="InsuredsRestApi.aspx.cs">
       <DependentUpon>InsuredsRestApi.aspx</DependentUpon>
@@ -284,6 +286,13 @@
     </Compile>
     <Compile Include="SearchInsureds.aspx.designer.cs">
       <DependentUpon>SearchInsureds.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPolicies.aspx.cs">
+      <DependentUpon>SearchPolicies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchPolicies.aspx.designer.cs">
+      <DependentUpon>SearchPolicies.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
