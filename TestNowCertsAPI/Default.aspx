@@ -1,41 +1,84 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="TestNowCertsAPI._Default" %>
 
+<asp:Content ID="BodyContentTop" ContentPlaceHolderID="MainContentAlt" runat="server">
+    <section class="background-light top-section">
+        <div class="container">
+            <div class="row mt-30">
+                <div class="text-center">
+                    <img src="https://www.nowcerts.com/Resources/Images/intro/nowcerts-insurance-agency-management-system-identity-dark.png" alt="NowCerts" />
+                    <h3 class="text-primary mb-5">NowCerts Web API - Example Project</h3>
+                    <p class="font-semi-bold">
+                        Check our example project to see what is possible using our developer Web API.
+                    </p>
+                    <a target="_blank" href="https://api.nowcerts.com/Help" class="btn btn-info">API Docs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</asp:Content>
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container">
+        <div class="row mt-30">
+            <div class="col-lg-6">
+                <h4 class="text-normal mt-0">
+                    <span class="square square-info"></span>
+                    <span>Example Project</span>
+                </h4>
 
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
+                <p>
+                    We know examples are very important for understanding any API, so we made this project to help you getting started using <strong>NowCerts API</strong>.
+                    <br /><br />
+                    Currently the example project demonstrates the following possibilities: <br /><br />
+                    <span class="font-italic"><a runat="server" href="~/AuthenticateRestApi">- User Authetication</a>;</span> <br />
+                    <span class="font-italic"><a runat="server" href="~/RefreshToken">- Getting a refresh Token</a>;</span> <br />
+                    <span class="font-italic"><a runat="server" href="~/InsuredsRestApi">- Insert Insured/Prospect</a>;</span> <br />
+                    <span class="font-italic"><a runat="server" href="~/PoliciesRestApi">- Insert Policy/Quote for a specified Insured</a>;</span> <br />
+                    <span class="font-italic"><a runat="server" href="~/SearchInsureds">- Search and Filter Insureds</a>;</span> <br />
+                    <span class="font-italic"><a runat="server" href="~/SearchPolicies">- Search and Filter Policies</a>.</span> <br />
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
+                    <br />
+                    The source code of the project is available on our <a class="font-semi-bold" target="_blank" href="https://github.com/NowCerts/NowCertsTestWebServices">GitHub account</a>.
+                    <br />
+                    You can preview the <a class="font-semi-bold" target="_blank" href="http://test.api.nowcerts.com">live demo</a>.
+                </p>
+            </div>
+
+            <div class="col-lg-6">
+                <h4 class="text-normal mt-0">
+                    <span class="square square-primary"></span>
+                    <span>Docs and Materials</span>
+                </h4>
+
+                <p>
+                    If you are a new user who wants to use <strong>NowCerts API</strong> for your project, we've prepared some materials to help you get started.
+                    <br /><br />
+                    In our support portal there are several articles explaning in details how to start using <strong>NowCerts API</strong>. You can take a look here: <br /><br />
+                    <a target="_blank" href="https://nowcerts.zendesk.com/hc/en-us/articles/360004065771-NowCerts-com-REST-API">REST API - Intro</a> <br />
+                    <a target="_blank" href="https://nowcerts.zendesk.com/hc/en-us/articles/360019099351-NowCerts-com-REST-API-Search-Insureds">REST API - Search Insureds</a> <br />
+                    <a target="_blank" href="https://nowcerts.zendesk.com/hc/en-us/articles/360019538412-NowCerts-com-REST-API-Custom-Fields">REST API - Custom Fields</a> <br />
+
+                    <br />
+                    You can preview the <a class="font-semi-bold" target="_blank" href="https://api.nowcerts.com/Help">API Documentation Portal</a>.
+                </p>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
+
+        <div class="row mt-30">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <h4 class="text-normal mt-0">
+                        <span class="square square-passive"></span>
+                        <span>Get In Touch</span>
+                    </h4>
+
+                    <p>
+                        If you have any questions or suggestions for additions <br /> please feel free to contact us.
+                        <br />
+                        <a href="mailto:info@nowcerts.com">info@nowcerts.com</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 

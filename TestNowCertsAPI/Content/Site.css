@@ -29,3 +29,94 @@ textarea {
         padding: 0;
     }
 }
+
+.navbar-inverse {
+    background-color: #2dabc1;
+    border-color: #2dabc1;
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.background-light {
+    background-color: #fafafa;
+}
+
+.top-section {
+    padding-bottom: 15px;
+}
+
+.text-primary {
+    color: #2dabc1;
+}
+
+.text-normal {
+    color: #676a6c;
+}
+
+.font-semi-bold {
+    font-weight: 600;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+p {
+    color: #676a6c;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-5 {
+    margin-bottom: 5px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.btn-info {
+    background-color: #1ab394;
+    border-color: #1ab394;
+}
+
+    .btn-info:hover {
+        background-color: #0fc39f;
+        border-color: #0fc39f;
+    }
+
+.square {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+}
+
+    .square.square-primary {
+        background-color: #2dabc1;
+    }
+
+    .square.square-info {
+        background-color: #1ab394;
+    }
+
+    .square.square-passive {
+        background-color: #a7b1c2;
+    }
