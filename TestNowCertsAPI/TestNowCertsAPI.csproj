@@ -204,6 +204,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SearchAgents.aspx" />
     <Content Include="SearchInsureds.aspx" />
     <Content Include="SearchPolicies.aspx" />
     <Content Include="Site.Master" />
@@ -281,6 +282,13 @@
     </Compile>
     <Compile Include="RefreshToken.aspx.designer.cs">
       <DependentUpon>RefreshToken.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchAgents.aspx.cs">
+      <DependentUpon>SearchAgents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchAgents.aspx.designer.cs">
+      <DependentUpon>SearchAgents.aspx</DependentUpon>
     </Compile>
     <Compile Include="SearchInsureds.aspx.cs">
       <DependentUpon>SearchInsureds.aspx</DependentUpon>

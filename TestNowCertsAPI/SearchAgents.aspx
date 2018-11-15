@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchPolicies.aspx.cs" Inherits="TestNowCertsAPI.SearchPolicies" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchAgents.aspx.cs" Inherits="TestNowCertsAPI.SelectAgent" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
@@ -6,18 +6,32 @@
     <asp:Label ID="ltrAuthenticationStatus" runat="server"></asp:Label>
 
     <div class="main">
-        <h3>Search Policies</h3>
+        <h3>Search Agents</h3>
         <div class="filter">
             <div class="caption">
-                <span>Policy Number</span>
+                <span>First Name</span>
             </div>
             <div class="control">
-                <asp:TextBox ID="txtNumber" class="txt-number" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtFirstName" class="txt-first-name" runat="server"></asp:TextBox>
             </div>
         </div>
 
         <div class="filter">
-            <asp:CheckBox ID="chIsQuote" runat="server" CssClass="ch-is-quote" Text="Is Quote" />
+            <div class="caption">
+                <span>Last Name</span>
+            </div>
+            <div class="control">
+                <asp:TextBox ID="txtLastName" class="txt-last-name" runat="server"></asp:TextBox>
+            </div>
+        </div>
+
+        <div class="filter">
+            <div class="caption">
+                <span>Email</span>
+            </div>
+            <div class="control">
+                <asp:TextBox ID="txtEmail" class="txt-email" runat="server"></asp:TextBox>
+            </div>
         </div>
 
         <div class="filter">
@@ -31,9 +45,10 @@
             <div class="control">
                 <asp:DropDownList ID="ddlOrderBy" runat="server" CssClass="ddl-order">
                     <asp:ListItem Text="" Value=""></asp:ListItem>
-                    <asp:ListItem Text="Business Sub Type" Value="businessSubType" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Effective Date" Value="effectiveDate"></asp:ListItem>
-                    <asp:ListItem Text="Expiration Date" Value="expirationDate"></asp:ListItem>
+                    <asp:ListItem Text="Primary Office Name" Value="primaryOfficeName" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="FirstName" Value="firstName"></asp:ListItem>
+                    <asp:ListItem Text="Last Name" Value="lastName"></asp:ListItem>
+                    <asp:ListItem Text="Active" Value="active"></asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
@@ -56,15 +71,19 @@
             </div>
             <div class="control">
                 <asp:CheckBoxList ID="cblProperties" runat="server" CssClass="chl-properties">
-                    <asp:ListItem Text="Expiration Date" Value="expirationDate"></asp:ListItem>
-                    <asp:ListItem Text="Effective Date" Value="effectiveDate"></asp:ListItem>
-                    <asp:ListItem Text="BindDate" Value="bindDate"></asp:ListItem>
-                    <asp:ListItem Text="Business Type" Value="businessType"></asp:ListItem>
-                    <asp:ListItem Text="Description" Value="description"></asp:ListItem>
-                    <asp:ListItem Text="Insured First Name" Value="insuredFirstName"></asp:ListItem>
-                    <asp:ListItem Text="Insured Last Name" Value="insuredLastName"></asp:ListItem>
-                    <asp:ListItem Text="Insured Commercial Name" Value="insuredCommercialName"></asp:ListItem>
-                    <asp:ListItem Text="Insured Email" Value="insuredEmail"></asp:ListItem>
+                    <asp:ListItem Text="First Name" Value="firstName"></asp:ListItem>
+                    <asp:ListItem Text="Last Name" Value="lastName"></asp:ListItem>
+                    <asp:ListItem Text="EMail" Value="email"></asp:ListItem>
+                    <asp:ListItem Text="NPN Number" Value="nPN_Number"></asp:ListItem>
+                    <asp:ListItem Text="Primary Role" Value="primaryRole"></asp:ListItem>
+                    <asp:ListItem Text="Assign Commission If CSR" Value="assignCommissionIfCSR"></asp:ListItem>
+                    <asp:ListItem Text="Is Default Agent" Value="isDefaultAgent"></asp:ListItem>
+                    <asp:ListItem Text="Use Agent If Not Default" Value="useAgentIfNotDefault"></asp:ListItem>
+                    <asp:ListItem Text="Phone" Value="phone"></asp:ListItem>
+                    <asp:ListItem Text="Cell Phone" Value="cellPhone"></asp:ListItem>
+                    <asp:ListItem Text="Fax" Value="fax"></asp:ListItem>
+                    <asp:ListItem Text="Primary Office Name" Value="primaryOfficeName"></asp:ListItem>
+                    <asp:ListItem Text="Active" Value="active"></asp:ListItem>
                 </asp:CheckBoxList>
             </div>
         </div>
@@ -95,12 +114,14 @@
             </div>
         </div>
 
-         <div style="margin-top: 15px;">
+        <div style="margin-top: 15px;">
             <asp:Button ID="btnSearch" class="btn-search" runat="server" Text="Search" OnClientClick="return false;" />
         </div>
 
         <div style="margin-top: 15px;">
-            <strong><asp:Label ID="ltrRequestUrl" runat="server"></asp:Label></strong> <br />
+            <strong>
+                <asp:Label ID="ltrRequestUrl" runat="server"></asp:Label></strong>
+            <br />
             <asp:Label ID="ltrResultMessage" runat="server"></asp:Label>
         </div>
     </div>
@@ -125,24 +146,24 @@
             font-weight: normal;
         }
     </style>
-
     <script>
         $('document').ready(function () {
-            var $number = $('.txt-number'),
-                $chIsQuote = $('.ch-is-quote');
+            var $firstName = $('.txt-first-name'),
+                $lastName = $('.txt-last-name'),
+                $email = $('.txt-email'),
                 $chMoreSettings = $('.ch-more-settings'),
                 $ddlOrder = $('.ddl-order'),
                 $ddlOrderDirection = $('.ddl-order-direction'),
                 $skip = $('.txt-skip'),
                 $top = $('.txt-top'),
                 $btnSearch = $('.btn-search'),
-                isQuote = false,
                 isAdvanced = false,
                 authorizationData = localStorage.getItem('authorizationData');
 
             var FILTER_DEFINITION = {
-                number: { comparison: 'contains' },
-                isQuote: { comparison: 'eq' }
+                firstName: { comparison: 'contains' },
+                lastName: { comparison: 'contains' },
+                email: { comparison: 'contains' },
             };
 
             // Check for Authorization.
@@ -152,7 +173,6 @@
 
                 $('.only-settings').hide();
                 insuredMoreSettingsHandler();
-                policyOrQuote();
                 insuredSearchHandler();
             } else {
                 document.getElementById("<%=ltrAuthenticationStatus.ClientID %>").innerHTML = "You are not authenticated. Please Authenticate.";
@@ -164,12 +184,17 @@
                 $btnSearch.on('click', function () {
                     var filter = {};
 
-                    if ($number.val()) {
-                            filter.number = $number.val();
+                    if ($firstName.val()) {
+                        filter.firstName = $firstName.val();
                     }
-                    filter.isQuote = isQuote;
+                    if ($lastName.val()) {
+                        filter.lastName = $lastName.val();
+                    }
+                    if ($email.val()) {
+                        filter.email = $email.val();
+                    }
 
-                    var base = '<%=ConfigurationHelper.ApiUrl%>PolicyList()?';
+                    var base = '<%=ConfigurationHelper.ApiUrl%>AgentList()?';
                     var url = constructFilter(filter);
                     var final = `${base}${url}`;
 
@@ -196,19 +221,19 @@
                     })
                         .fail(function (error) {
                             document.getElementById("<%=ltrResultMessage.ClientID %>").innerHTML = `Error. Please try again or re-authenticate.`;
-                        })
-                        .done(function (result) {
-                            if (result) {
-                                var insureds = result.value;
-                                console.log(insureds);
+                         })
+                         .done(function (result) {
+                             if (result) {
+                                 var agents = result.value;
+                                 console.log(agents);
 
-                                document.getElementById("<%=ltrRequestUrl.ClientID %>").innerHTML = `Request URL: ${final}`;
-                                document.getElementById("<%=ltrResultMessage.ClientID %>").innerHTML = `Results were printed in the console. Search found ${insureds.length} matches.`;
+                                 document.getElementById("<%=ltrRequestUrl.ClientID %>").innerHTML = `Request URL: ${final}`;
+                                 document.getElementById("<%=ltrResultMessage.ClientID %>").innerHTML = `Results were printed in the console. Search found ${agents.length} matches.`;
                             }
                         });
                 });
             }
-            
+
             // Handle the more settings checkbox change event.
             function insuredMoreSettingsHandler() {
                 $chMoreSettings.on('change', function () {
@@ -223,16 +248,9 @@
                 });
             }
 
-            // isQuote
-            function policyOrQuote() {
-                $chIsQuote.on('change', function () {
-                    isQuote = $(this).find('input')[0].checked ? true : false;
-                });
-            }
-            
             // Get selected properties for additional $select odata statement.
             function getSelectedProperties() {
-                result = ['databaseId'];
+                result = ['id'];
 
                 var checks = $('.chl-properties').find('input');
 
@@ -249,28 +267,28 @@
             function constructFilter(filter) {
                 var result = '$filter=';
                 var collectionContains = [];
-                var collectionEquals = [];
                 var properties = Object.keys(filter);
-                
+
                 for (var i = 0; i < properties.length; i++) {
                     var comparisonDef = FILTER_DEFINITION[properties[i]];
                     if (comparisonDef) {
                         if (comparisonDef.comparison === 'contains') {
                             collectionContains.push(`contains(${properties[i]}, '${filter[properties[i]]}')`);
                         }
-
-                        if (comparisonDef.comparison === 'eq') {
-                            collectionEquals.push(`(${properties[i]} eq ${filter[properties[i]]})`);
-                        }
                     }
                 }
 
-                result = result + collectionEquals.join(' and ');
-
-                if (collectionContains.length > 0) {
-                    result = result + ' and ' + collectionContains.join(' and ');
+                if (collectionContains.length > 1) {
+                    result = result + collectionContains.join(' and ');
                 }
-                
+                else {
+                    result = result + collectionContains;
+                }
+
+                if (result === "$filter=") {
+                    result = "";
+                }
+
                 return result;
             }
         });

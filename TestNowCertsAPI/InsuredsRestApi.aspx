@@ -1,23 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InsuredsRestApi.aspx.cs" Inherits="TestNowCertsAPI.InsuredsRestApi" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    Commercial Name:
-    <asp:TextBox ID="txtCommercialName" class="txt-commercial-name" runat="server"></asp:TextBox>
-    <br />
-    or
-    <br />
-    Personal First Name:
-    <asp:TextBox ID="txtFirstName" class="txt-first-name" runat="server"></asp:TextBox>
-    Last Name:
-    <asp:TextBox ID="txtLastName" class="txt-last-name" runat="server"></asp:TextBox>
-    <br />
-    <asp:Button ID="btnSubmit" class="btn-submit" runat="server" Text="Submit" OnClientClick="return false;" />
     <br />
     Authentication Status:
     <asp:Label ID="ltrAuthenticationStatus" runat="server"></asp:Label>
+
+    <div class="main" style="padding-top: 25px">
+        Commercial Name:
+    <asp:TextBox ID="txtCommercialName" class="txt-commercial-name" runat="server"></asp:TextBox>
+        <br />
+        or
     <br />
-    Result Message:
+        Personal First Name:
+    <asp:TextBox ID="txtFirstName" class="txt-first-name" runat="server"></asp:TextBox>
+        Last Name:
+    <asp:TextBox ID="txtLastName" class="txt-last-name" runat="server"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnSubmit" class="btn-submit" runat="server" Text="Submit" OnClientClick="return false;" />
+        <br />
+        Result Message:
     <asp:Label ID="ltrResultMessage" runat="server"></asp:Label>
+    </div>
 </asp:Content>
 
 <asp:Content ID="ContentScripts" ContentPlaceHolderID="scripts" runat="server">
@@ -79,6 +82,7 @@
             }
             else {
                 document.getElementById("<%=ltrAuthenticationStatus.ClientID %>").innerHTML = "You are not authenticated. Please Authenticate.";
+                $(".main").hide();
             }
         });
     </script>

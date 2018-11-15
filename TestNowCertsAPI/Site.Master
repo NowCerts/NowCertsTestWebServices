@@ -66,6 +66,7 @@
                         <li><a runat="server" href="~/PoliciesRestApi">Policies</a></li>
                         <li><a runat="server" href="~/SearchInsureds">Search Insureds</a></li>
                         <li><a runat="server" href="~/SearchPolicies">Search Policies</a></li>
+                        <li><a runat="server" href="~/SearchAgents">Search Agents</a></li>
                         <li><a runat="server" href="~/RefreshToken">Refresh Token</a></li>
                     </ul>
                 </div>

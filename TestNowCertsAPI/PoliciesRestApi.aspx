@@ -1,19 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PoliciesRestApi.aspx.cs" Inherits="TestNowCertsAPI.PoliciesRestApi" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    Policy Number:
-    <asp:TextBox ID="txtPolicyNumber" class="txt-policy-number" runat="server"></asp:TextBox>
-    <br />
-    Insured Name:
-    <asp:TextBox ID="txtInsuredName" class="txt-insured-name" runat="server"></asp:TextBox>
-    <br />
-    <asp:Button ID="btnAuthenticate" class="btn-submit" runat="server" Text="Create Policy" OnClientClick="return false;" />
     <br />
     Authentication Status:
     <asp:Label ID="ltrAuthenticationStatus" runat="server"></asp:Label>
-    <br />
-    Result Message:
+
+    <div class="main"style="padding-top: 25px">
+        Policy Number:
+    <asp:TextBox ID="txtPolicyNumber" class="txt-policy-number" runat="server"></asp:TextBox>
+        <br />
+        Insured Name:
+    <asp:TextBox ID="txtInsuredName" class="txt-insured-name" runat="server"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnAuthenticate" class="btn-submit" runat="server" Text="Create Policy" OnClientClick="return false;" />
+        <br />
+        Result Message:
     <asp:Label ID="ltrResultMessage" runat="server"></asp:Label>
+    </div>
 </asp:Content>
 
 <asp:Content ID="ContentScripts" ContentPlaceHolderID="scripts" runat="server">
@@ -67,6 +70,7 @@
             }
             else {
                 document.getElementById("<%=ltrAuthenticationStatus.ClientID %>").innerHTML = "You are not authenticated. Please Authenticate.";
+                $(".main").hide();
             }
         });
     </script>

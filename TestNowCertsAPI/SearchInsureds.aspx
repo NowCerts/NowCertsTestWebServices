@@ -4,7 +4,7 @@
     Authentication Status:
     <asp:Label ID="ltrAuthenticationStatus" runat="server"></asp:Label>
 
-    <div>
+    <div class="main">
         <h3>Search Insureds</h3>
         <div class="filter">
             <div class="caption">
@@ -197,6 +197,7 @@
                 insuredMoreSettingsHandler();
                 insuredSearchHandler();
             } else {
+                $(".main").hide();
                 document.getElementById("<%=ltrAuthenticationStatus.ClientID %>").innerHTML = "You are not authenticated. Please Authenticate.";
             }
 
