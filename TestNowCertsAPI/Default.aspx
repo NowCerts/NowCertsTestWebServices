@@ -54,9 +54,9 @@
                     If you are a new user who wants to use <strong>NowCerts API</strong> for your project, we've prepared some materials to help you get started.
                     <br /><br />
                     In our support portal there are several articles explaning in details how to start using <strong>NowCerts API</strong>. You can take a look here: <br /><br />
-                    <a target="_blank" href="https://nowcerts.zendesk.com/hc/en-us/articles/360004065771-NowCerts-com-REST-API">REST API - Intro</a> <br />
-                    <a target="_blank" href="https://nowcerts.zendesk.com/hc/en-us/articles/360019099351-NowCerts-com-REST-API-Search-Insureds">REST API - Search Insureds</a> <br />
-                    <a target="_blank" href="https://nowcerts.zendesk.com/hc/en-us/articles/360019538412-NowCerts-com-REST-API-Custom-Fields">REST API - Custom Fields</a> <br />
+                    <a target="_blank" href="https://nowcerts.freshdesk.com/support/solutions/articles/48000154522-nowcerts-com-rest-api">REST API - Intro</a> <br />
+                    <a target="_blank" href="https://nowcerts.freshdesk.com/support/solutions/articles/48000146941-nowcerts-com-rest-api-search-insureds">REST API - Search Insureds</a> <br />
+                    <a target="_blank" href="https://nowcerts.freshdesk.com/support/solutions/articles/48000146940-nowcerts-com-rest-api-custom-fields">REST API - Custom Fields</a> <br />
 
                     <br />
                     You can preview the <a class="font-semi-bold" target="_blank" href="https://api.nowcerts.com/Help">API Documentation Portal</a>.
@@ -75,7 +75,7 @@
                     <p>
                         If you have any questions or suggestions for additions <br /> please feel free to contact us.
                         <br />
-                        <a href="mailto:info@nowcerts.com">info@nowcerts.com</a>
+                        <a href="mailto:support@nowcerts.com">support@nowcerts.com</a>
                     </p>
                 </div>
             </div>
