@@ -68,7 +68,7 @@
                         <li><a runat="server" href="~/RefreshToken">Refresh Token</a></li>
                         <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Insert
-                        <span class="caret"></span></a>
+                        <span class="caret" style="border-top-color:white"></span></a>
                         <ul class="dropdown-menu">
                             <li><a runat="server" href="~/InsuredsRestApi">Insureds</a></li>
                             <li><a runat="server" href="~/PoliciesRestApi">Policies</a></li>
@@ -76,7 +76,7 @@
                         </li>
                         <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Search
-                        <span class="caret"></span></a>
+                        <span class="caret" style="border-top-color:white"></span></a>
                         <ul class="dropdown-menu">
                         <li><a runat="server" href="~/SearchInsureds">Insureds</a></li>
                         <li><a runat="server" href="~/SearchPolicies">Policies</a></li>
