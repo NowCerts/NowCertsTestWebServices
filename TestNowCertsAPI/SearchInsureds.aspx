@@ -8,12 +8,12 @@
         <h3>Search Insureds</h3>
         <div class="filter">
             <div class="caption">
-                <span>Type</span>
+                <span>Insured Type</span>
             </div>
             <div class="control">
                 <asp:DropDownList ID="ddlType" runat="server" CssClass="ddl-type">
-                    <asp:ListItem Text="Commercial" Value="0" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Personal" Value="1"></asp:ListItem>
+                    <asp:ListItem Text="Commercial" Value="Commercial" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Personal" Value="Personal"></asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
@@ -167,7 +167,7 @@
                 $firstName = $('.txt-first-name'),
                 $lastName = $('.txt-last-name'),
                 $email = $('.txt-email'),
-                $type = $('.ddl-type'),
+                $Insuredtype = $('.ddl-type'),
                 $chMoreSettings = $('.ch-more-settings'),
                 $ddlOrder = $('.ddl-order'),
                 $ddlOrderDirection = $('.ddl-order-direction'),
@@ -183,7 +183,7 @@
                 firstName: { comparison: 'contains' },
                 lastName: { comparison: 'contains' },
                 email: { comparison: 'contains' },
-                type: { comparison: 'eq' }
+                Insuredtype: { comparison: 'contains' }
             };
 
             // Check for Authorization.
@@ -203,15 +203,16 @@
 
             // Handle Search button click and send the request to NowCerts API.
             function insuredSearchHandler() {
+                
                 $btnSearch.on('click', function () {
                     var filter = {};
-                    filter.type = $type.val();
+                    filter.Insuredtype = $Insuredtype.val();
 
                     if ($email.val()) {
                         filter.email = $email.val();
                     }
 
-                    if ($type.val() === '1') {
+                    if ($Insuredtype.val() === 'Personal') {
                         if ($firstName.val()) {
                             filter.firstName = $firstName.val();
                         }
@@ -267,8 +268,8 @@
 
             // Handle the insured type change event.
             function insuredTypeChangeHandler() {
-                $type.on('change', function () {
-                    if (this.value === '1') {
+                $Insuredtype.on('change', function () {
+                    if (this.value === 'Personal') {
                         isCommercial = false;
                     } else {
                         isCommercial = true;
@@ -337,11 +338,17 @@
                         }
                     }
                 }
-
-                result = result + collectionEquals.join(' and ');
+                if (collectionEquals.length > 0) {
+                    result = result + collectionEquals.join(' and ');
+                }
 
                 if (collectionContains.length > 0) {
-                    result = result + ' and ' + collectionContains.join(' and ');
+                    if (collectionEquals.length > 0) {
+                        result = result + ' and ' + collectionContains.join(' and ');
+                    }
+                    else {
+                        result = result + collectionContains.join(' and ');
+                    }
                 }
 
                 return result;
