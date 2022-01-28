@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="UpdateXml" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<XmlFile>$(MSBuildProjectDirectory)\Web.config</XmlFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Create an item which we can use to bundle all the transformations which are needed -->
+		<XmlConfigUpdates Include="ConfigUpdates">
+			<XPath>/configuration/appSettings/add[@key='ApiUrl']/@value</XPath>
+			<NewValue>$(_ApiUrl)</NewValue>
+		</XmlConfigUpdates>
+
+		<XmlConfigUpdates Include="ConfigUpdates">
+			<XPath>/configuration/system.web/compilation/@debug</XPath>
+			<NewValue>false</NewValue>
+		</XmlConfigUpdates>
+	</ItemGroup>
+
+	<Target Name="UpdateXml">
+		<Message Text="Updating XML file at $(XmlFile)" />
+
+		<!-- Now let's execute all the XML transformations -->
+		<XmlPoke XmlInputPath="$(XmlFile)"
+				 Query="%(XmlConfigUpdates.XPath)"
+				 Value="%(XmlConfigUpdates.NewValue)"/>
+	</Target>
+</Project>
